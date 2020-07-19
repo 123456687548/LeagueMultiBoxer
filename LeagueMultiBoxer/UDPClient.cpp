@@ -175,13 +175,26 @@ std::string UDPClient::checkKeyState()
 	{
 		if (!wasYPressed)
 		{
-			retVal += "mr";
+			retVal += "ml";
 			wasYPressed = true;
 		}
 	}
 	else
 	{
 		wasYPressed = false;
+	}
+
+	if (GetAsyncKeyState(VK_X) & 1)
+	{
+		if (!wasXPressed)
+		{
+			retVal += "mr";
+			wasXPressed = true;
+		}
+	}
+	else
+	{
+		wasXPressed = false;
 	}
 	return retVal;
 }

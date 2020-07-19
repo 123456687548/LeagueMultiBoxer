@@ -1,5 +1,13 @@
+#include "keyCodes.h"
 #include "UDPClient.h"
 #include "UDPServer.h"
+
+void sendKeyWithSendMessage(HWND window, WORD key, char letter)
+{
+	SendMessageA(window, WM_KEYDOWN, key, 0);
+	if (letter != 0) SendMessageA(window, WM_CHAR, letter, 1);
+	SendMessageA(window, WM_KEYUP, key, 1);
+}
 
 int main(int argc, char** argv)
 {

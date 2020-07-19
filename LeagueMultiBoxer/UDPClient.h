@@ -19,6 +19,7 @@ private:
 	bool wasDPressed;
 	bool wasFPressed;
 	bool wasYPressed;
+	bool wasXPressed;
 public:
 	UDPClient(int port, char* ipAddress) : port(port), ipAddress(ipAddress)
 	{

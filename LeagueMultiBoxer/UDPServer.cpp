@@ -85,34 +85,38 @@ void UDPServer::checkForButtonPresses(std::string* str)
 {
 	if (str->find('Q') != std::string::npos)
 	{
-		pressKeyWithSendInput(VK_Q);
+		pressKeyWithScanCode(SCAN_CODE_Q);
 	}
 	if (str->find('W') != std::string::npos)
 	{
-		pressKeyWithSendInput(VK_W);
+		pressKeyWithScanCode(SCAN_CODE_W);
 	}
 	if (str->find('E') != std::string::npos)
 	{
-		pressKeyWithSendInput(VK_E);
+		pressKeyWithScanCode(SCAN_CODE_E);
 	}
 	if (str->find('R') != std::string::npos)
 	{
-		pressKeyWithSendInput(VK_R);
+		pressKeyWithScanCode(SCAN_CODE_R);
 	}
 	if (str->find('D') != std::string::npos)
 	{
-		pressKeyWithSendInput(VK_D);
+		pressKeyWithScanCode(SCAN_CODE_D);
 	}
 	if (str->find('F') != std::string::npos)
 	{
-		pressKeyWithSendInput(VK_F);
+		pressKeyWithScanCode(SCAN_CODE_F);
 	}
 	if (str->find('T') != std::string::npos)
 	{
-		pressKeyWithSendInput(VK_T);
+		pressKeyWithScanCode(SCAN_CODE_T);
 	}
-	if (str->find('mr') != std::string::npos)
+	if (str->find("ml") != std::string::npos)
 	{
-		pressKeyWithSendInput(VK_T);
+		pressMouseButton(false);
+	}
+	if (str->find("mr") != std::string::npos)
+	{
+		pressMouseButton(true);
 	}
 }
