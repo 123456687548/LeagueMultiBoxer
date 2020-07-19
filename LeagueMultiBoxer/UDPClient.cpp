@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string>
 
+#include "keyCodes.h"
+
 int UDPClient::startClient()
 {
 	long rc;
@@ -48,8 +50,6 @@ int UDPClient::startClient()
 	// Daten austauschen
 	while (1)
 	{
-		
-		//rc = sendto(s, buf, strlen(buf), 0, (SOCKADDR*)&addr, sizeof(SOCKADDR_IN));
 		POINT p;
 		if (!GetCursorPos(&p))
 		{
@@ -57,11 +57,11 @@ int UDPClient::startClient()
 		}
 
 
-		std::string str = std::to_string(p.x) + "|" + std::to_string(p.y);
+		std::string str = std::to_string(p.x) + "|" + std::to_string(p.y) + "|" + checkKeyState();
 		const char* mousePos = str.c_str();
-		strcpy_s(buf, mousePos);
+		//strcpy_s(buf, mousePos);
 
-		rc = send(sock, buf, strlen(buf), 0);
+		rc = send(sock, mousePos, strlen(mousePos), 0);
 
 		if (rc == SOCKET_ERROR)
 		{
@@ -75,4 +75,113 @@ int UDPClient::startClient()
 	}
 
 	return 0;
+}
+
+std::string UDPClient::checkKeyState()
+{
+	std::string retVal;
+	if (GetAsyncKeyState(VK_Q) & 1)
+	{
+		if (!wasQPressed)
+		{
+			retVal += "Q";
+			wasQPressed = true;
+		}
+	}
+	else
+	{
+		wasQPressed = false;
+	}
+
+	if (GetAsyncKeyState(VK_W) & 1)
+	{
+		if (!wasWPressed)
+		{
+			retVal += "W";
+			wasWPressed = true;
+		}
+	}
+	else
+	{
+		wasWPressed = false;
+	}
+
+	if (GetAsyncKeyState(VK_E) & 1)
+	{
+		if (!wasEPressed)
+		{
+			retVal += "E";
+			wasEPressed = true;
+		}
+	}
+	else
+	{
+		wasEPressed = false;
+	}
+
+	if (GetAsyncKeyState(VK_R) & 1)
+	{
+		if (!wasRPressed)
+		{
+			retVal += "R";
+			wasRPressed = true;
+		}
+	}
+	else
+	{
+		wasRPressed = false;
+	}
+
+	if (GetAsyncKeyState(VK_D) & 1)
+	{
+		if (!wasDPressed)
+		{
+			retVal += "D";
+			wasDPressed = true;
+		}
+	}
+	else
+	{
+		wasDPressed = false;
+	}
+
+	if (GetAsyncKeyState(VK_F) & 1)
+	{
+		if (!wasFPressed)
+		{
+			retVal += "F";
+			wasFPressed = true;
+		}
+	}
+	else
+	{
+		wasFPressed = false;
+	}
+
+	if (GetAsyncKeyState(VK_T) & 1)
+	{
+		if (!wasTPressed)
+		{
+			retVal += "T";
+			wasTPressed = true;
+		}
+	}
+	else
+	{
+		wasTPressed = false;
+	}
+
+	if (GetAsyncKeyState(VK_Y) & 1)
+	{
+		if (!wasYPressed)
+		{
+			retVal += "mr";
+			wasYPressed = true;
+		}
+	}
+	else
+	{
+		wasYPressed = false;
+	}
+	return retVal;
 }

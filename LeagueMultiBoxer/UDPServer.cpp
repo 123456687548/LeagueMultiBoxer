@@ -1,8 +1,12 @@
 #include "UDPServer.h"
 
+
+#include <chrono>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+
+#include "keyCodes.h"
 
 int UDPServer::startServer()
 {
@@ -68,8 +72,47 @@ int UDPServer::startServer()
 
 		std::string recvData = buf;
 		int newX = std::stoi(recvData.substr(0, recvData.find('|')));
-		int newY = std::stoi(recvData.substr(recvData.find('|') + 1));
+		int newY = std::stoi(recvData.substr(recvData.find('|') + 1, recvData.rfind('|')));
 		SetCursorPos(newX, newY);
+		printf("%s\n", recvData.c_str());
+
+		checkForButtonPresses(&recvData);
 	}
 	return 0;
+}
+
+void UDPServer::checkForButtonPresses(std::string* str)
+{
+	if (str->find('Q') != std::string::npos)
+	{
+		pressKeyWithSendInput(VK_Q);
+	}
+	if (str->find('W') != std::string::npos)
+	{
+		pressKeyWithSendInput(VK_W);
+	}
+	if (str->find('E') != std::string::npos)
+	{
+		pressKeyWithSendInput(VK_E);
+	}
+	if (str->find('R') != std::string::npos)
+	{
+		pressKeyWithSendInput(VK_R);
+	}
+	if (str->find('D') != std::string::npos)
+	{
+		pressKeyWithSendInput(VK_D);
+	}
+	if (str->find('F') != std::string::npos)
+	{
+		pressKeyWithSendInput(VK_F);
+	}
+	if (str->find('T') != std::string::npos)
+	{
+		pressKeyWithSendInput(VK_T);
+	}
+	if (str->find('mr') != std::string::npos)
+	{
+		pressKeyWithSendInput(VK_T);
+	}
 }
