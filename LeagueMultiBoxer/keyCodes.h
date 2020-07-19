@@ -60,6 +60,6 @@
 #define SCAN_CODE_V 0x2F
 #define SCAN_CODE_W 0x11
 #define SCAN_CODE_X 0x2D
-#define SCAN_CODE_Y 0x15
-#define SCAN_CODE_Z 0x2C
+#define SCAN_CODE_Y 0x2C
+#define SCAN_CODE_Z 0x15
 #define SCAN_CODE_ENTER 0x1C
